@@ -1,7 +1,4 @@
 #!/usr/bin/env python3
-"""
-mac-perf-monitor: A System Observability Agent (Local DevOps Tool)
-"""
 import sys
 import os
 

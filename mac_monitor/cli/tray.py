@@ -3,6 +3,7 @@ import threading
 import time
 from mac_monitor.engine.analyzer import analyzer
 
+
 class MacMonTrayApp(rumps.App):
     def __init__(self):
         super(MacMonTrayApp, self).__init__("MacMon: 🟢", quit_button="Quit MacMon")
@@ -19,16 +20,17 @@ class MacMonTrayApp(rumps.App):
     @rumps.clicked("Open Dashboard")
     def open_dashboard(self, _):
         import subprocess
+
         subprocess.Popen(["open", "-a", "Terminal", "-e", "macmon dashboard"])
 
     def on_tick(self, sender):
         # Run in background thread to not block UI
         threading.Thread(target=self.bg_analyze).start()
-        
+
     def bg_analyze(self):
         report = analyzer.analyze()
         self.update_ui(report)
-        
+
     def update_ui(self, report):
         score = report["score"]
         if score > 60:
@@ -38,6 +40,7 @@ class MacMonTrayApp(rumps.App):
             self.title = f"MacMon: 🟡 ({score:.0f})"
         else:
             self.title = f"MacMon: 🟢 ({score:.0f})"
+
 
 def run_tray():
     MacMonTrayApp().run()

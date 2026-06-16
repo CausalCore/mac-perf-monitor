@@ -1,11 +1,28 @@
 # Critical macOS and System processes that should never be touched
 SAFE_PROCESSES = {
-    "kernel_task", "launchd", "WindowServer", "syslogd", "logd",
-    "fseventsd", "UserEventAgent", "coreaudiod", "hidd",
-    "mds", "mdworker", "mdworker_shared", "loginwindow",
-    "Dock", "Finder", "SystemUIServer", "AirPlayUIAgent",
-    "Spotlight", "Activity Monitor", "Terminal", "python3"
+    "kernel_task",
+    "launchd",
+    "WindowServer",
+    "syslogd",
+    "logd",
+    "fseventsd",
+    "UserEventAgent",
+    "coreaudiod",
+    "hidd",
+    "mds",
+    "mdworker",
+    "mdworker_shared",
+    "loginwindow",
+    "Dock",
+    "Finder",
+    "SystemUIServer",
+    "AirPlayUIAgent",
+    "Spotlight",
+    "Activity Monitor",
+    "Terminal",
+    "python3",
 }
+
 
 def is_protected(process_name):
     """Check if a process is a known critical system process."""
@@ -19,5 +36,6 @@ def is_protected(process_name):
     if name.startswith("core") and name.endswith("d"):
         return True
     return False
+
 
 SAFE_MODE_ENABLED = True

@@ -28,23 +28,24 @@ HTML_TEMPLATE = """
 </html>
 """
 
+
 def generate_report():
     causes = replay_engine.get_recurring_causes()
-    
+
     if not causes:
         bottlenecks_html = "<p>No significant bottlenecks recorded. Your system is extremely healthy!</p>"
     else:
         bottlenecks_html = ""
         for c in causes:
             bottlenecks_html += f'<div class="bottleneck"><span>{c["cause"]}</span><span class="count">{c["frequency"]} occurrences</span></div>'
-            
+
     html = HTML_TEMPLATE.format(
         date=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        bottlenecks_html=bottlenecks_html
+        bottlenecks_html=bottlenecks_html,
     )
-    
+
     out_path = os.path.join(os.getcwd(), "causalcore_report.html")
-    
+
     try:
         with open(out_path, "w") as f:
             f.write(html)

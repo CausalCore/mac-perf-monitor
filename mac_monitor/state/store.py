@@ -5,11 +5,12 @@ import time
 STATE_DIR = os.path.expanduser("~/.macmon")
 STATE_FILE = os.path.join(STATE_DIR, "v10_history.json")
 
+
 class StateStore:
     def __init__(self):
         if not os.path.exists(STATE_DIR):
             os.makedirs(STATE_DIR, exist_ok=True)
-            
+
     def load(self):
         if not os.path.exists(STATE_FILE):
             return {"telemetry": [], "baselines": {}, "events": []}
@@ -25,5 +26,6 @@ class StateStore:
                 json.dump(data, f)
         except Exception:
             pass
+
 
 store = StateStore()

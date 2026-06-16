@@ -1,5 +1,6 @@
 import subprocess
 
+
 def get_thermal_proxy():
     """
     Checks if the Mac is thermally throttled via sysctl.
@@ -11,7 +12,7 @@ def get_thermal_proxy():
         out = subprocess.check_output(
             ["sysctl", "-n", "machdep.xcpm.cpu_thermal_level"],
             text=True,
-            stderr=subprocess.DEVNULL
+            stderr=subprocess.DEVNULL,
         ).strip()
         level = int(out)
         return {"thermal_level": level}
