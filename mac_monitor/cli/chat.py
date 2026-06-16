@@ -11,7 +11,7 @@ console = Console()
 
 
 def run_chat(prompt=None):
-    console.print("[bold cyan]🤖 AuraMac Local AI (Ollama)[/bold cyan]\n")
+    console.print("[bold cyan]🤖 CausalCore Local AI (Ollama)[/bold cyan]\n")
 
     # 1. Gather System Context
     report = analyzer.analyze()
@@ -39,7 +39,7 @@ def run_chat(prompt=None):
         if prompt
         else "Mac'im şu an neden yavaş hissettiriyor olabilir? Kısa ve öz bir özet yap."
     )
-    full_prompt = f"Sen AuraMac isimli bir macOS performans asistanısın. Aşağıdaki sistem bağlamını kullanarak kullanıcının sorusunu kısaca yanıtla.\n\n{context}\n\nKullanıcı Sorusu: {user_prompt}"
+    full_prompt = f"Sen CausalCore isimli bir macOS performans asistanısın. Aşağıdaki sistem bağlamını kullanarak kullanıcının sorusunu kısaca yanıtla.\n\n{context}\n\nKullanıcı Sorusu: {user_prompt}"
 
     console.print(f"[dim]Soru: {user_prompt}[/dim]\n")
     console.print("[yellow]Ollama'ya bağlanılıyor (localhost:11434)...[/yellow]\n")
@@ -59,7 +59,7 @@ def run_chat(prompt=None):
             result = json.loads(response.read().decode("utf-8"))
             answer = result.get("response", "No response received.")
             console.print(
-                Panel(Markdown(answer), title="AuraMac AI", border_style="green")
+                Panel(Markdown(answer), title="CausalCore AI", border_style="green")
             )
 
     except urllib.error.URLError as e:
@@ -70,7 +70,7 @@ def run_chat(prompt=None):
                 "Kurulum İçin:\n"
                 "1. [cyan]https://ollama.com[/cyan] adresinden Ollama'yı indirin.\n"
                 "2. Terminalde [cyan]ollama run llama3[/cyan] komutunu çalıştırın.\n"
-                "3. AuraMac'i tekrar deneyin.",
+                "3. CausalCore'u tekrar deneyin.",
                 title="Ollama Bulunamadı",
                 border_style="red",
             )
